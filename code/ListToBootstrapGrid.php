@@ -48,6 +48,10 @@ class ListToBootstrapGrid extends ArrayList
 
     private function getRows($list, $items_per_row, $center)
     {
+        if (!$list->count()) {
+            return false;
+        }
+
         $count = 0;
 
         foreach ($list as $item) {
