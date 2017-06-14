@@ -9,7 +9,8 @@ This was developed for [Bootstrap](http://getbootstrap.com), however can easily 
 
 ## Requirements
 
-- SilverStripe 3+
+- SilverStripe ^4
+
 
 ## Installation
 
@@ -17,10 +18,6 @@ This was developed for [Bootstrap](http://getbootstrap.com), however can easily 
 
 You can install it via composer with `composer require axllent/silverstripe-list-to-bootstrap-grid`
 
-### Manually install
-
-Download the latest release from [GitHub](https://github.com/axllent/silverstripe-list-to-bootstrap-grid/releases/latest)
-and extract into your web root.
 
 ## Basic usage
 In your page controller:
@@ -28,7 +25,9 @@ In your page controller:
 ```php
 <?php
 
-class CategoryPage_Controller extends Controller
+use Axllent\ListToBootstrapGrid\ListToBootstrapGrid;
+
+class CategoryPageController extends PageController
 {
     public function getProductRows()
     {
@@ -37,7 +36,7 @@ class CategoryPage_Controller extends Controller
             $columns = 3,       // Columns per row - must divide into 12!
             $center = true      // Center-align last row if < than $columns
         );
-    }    
+    }
 }
 ```
 

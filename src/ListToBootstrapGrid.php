@@ -1,4 +1,11 @@
 <?php
+
+namespace Axllent\ListToBootstrapGrid;
+
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\SS_List;
+use SilverStripe\View\ArrayData;
+
 /**
  * List To Bootstrap Grid
  *
@@ -16,7 +23,7 @@ class ListToBootstrapGrid extends ArrayList
     public function __construct(SS_List $list, $items_per_row = 3, $center = true)
     {
         if (12 % $items_per_row != 0) {
-            throw new Exception('$items_per_row (' . $items_per_row . ') must divide into 12');
+            throw new \LogicException('$items_per_row (' . $items_per_row . ') must divide into 12');
         }
 
         $this->setItemsPerRow($items_per_row);
