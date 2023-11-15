@@ -9,7 +9,7 @@ This was developed for [Bootstrap](http://getbootstrap.com), however can easily 
 
 ## Requirements
 
-- SilverStripe ^4
+- SilverStripe ^4 || ^5
 
 
 ## Installation
@@ -31,7 +31,7 @@ class CategoryPageController extends PageController
 {
     public function getProductRows()
     {
-        return new ListToBootstrapGrid(
+        return ListToBootstrapGrid::create(
             $this->Products(),  // The list you wish to convert
             $columns = 3,       // Columns per row - must divide into 12!
             $center = true      // Center-align last row if < than $columns
