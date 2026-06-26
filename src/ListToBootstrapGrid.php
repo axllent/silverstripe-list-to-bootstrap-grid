@@ -2,9 +2,9 @@
 
 namespace Axllent\ListToBootstrapGrid;
 
-use SilverStripe\ORM\ArrayList;
-use SilverStripe\ORM\SS_List;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
+use SilverStripe\Model\List\ArrayList;
+use SilverStripe\Model\List\SS_List;
 
 /**
  * List To Bootstrap Grid
@@ -17,12 +17,11 @@ use SilverStripe\View\ArrayData;
  * License: MIT-style license http://opensource.org/licenses/MIT
  * Authors: Techno Joy development team (www.technojoy.co.nz)
  */
-
 class ListToBootstrapGrid extends ArrayList
 {
     public function __construct(SS_List $list, $items_per_row = 3, $center = true)
     {
-        if (12 % $items_per_row != 0) {
+        if (0 != 12 % $items_per_row) {
             throw new \LogicException('$items_per_row (' . $items_per_row . ') must divide into 12');
         }
 
@@ -62,15 +61,15 @@ class ListToBootstrapGrid extends ArrayList
         $count = 0;
 
         foreach ($list as $item) {
-            $count++;
+            ++$count;
 
-            if ($count == 1) { // create new row
+            if (1 == $count) { // create new row
                 $rowobj = ArrayData::create(
-                    array(
-                        'Width' => $this->getColWidth(),
+                    [
+                        'Width'  => $this->getColWidth(),
                         'Offset' => 0,
-                        'Items' => ArrayList::create()
-                    )
+                        'Items'  => ArrayList::create(),
+                    ]
                 );
                 $this->add($rowobj);
             }
@@ -82,12 +81,12 @@ class ListToBootstrapGrid extends ArrayList
             }
         }
 
-        /* Create Offset to center-align remaining uneven row */
+        // Create Offset to center-align remaining uneven row
         if ($center) {
-            $last_row = $this->last();
+            $last_row       = $this->last();
             $last_row_count = $last_row->Items->Count();
             if ($last_row && $last_row_count != $this->getItemsPerRow()) {
-                $offset = ($this->getItemsPerRow() - $last_row_count) / 2 * $this->getColWidth();
+                $offset           = ($this->getItemsPerRow() - $last_row_count) / 2 * $this->getColWidth();
                 $last_row->Offset = $offset;
             }
         }

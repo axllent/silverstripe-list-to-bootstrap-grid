@@ -6,11 +6,9 @@ than the specified value).
 
 This was developed for [Bootstrap](http://getbootstrap.com), however can easily be modified to suit any CSS grid system.
 
-
 ## Requirements
 
-- SilverStripe ^4 || ^5
-
+- SilverStripe ^6
 
 ## Installation
 
@@ -18,8 +16,8 @@ This was developed for [Bootstrap](http://getbootstrap.com), however can easily 
 
 You can install it via composer with `composer require axllent/silverstripe-list-to-bootstrap-grid`
 
-
 ## Basic usage
+
 In your page controller:
 
 ```php
@@ -41,15 +39,16 @@ class CategoryPageController extends PageController
 ```
 
 Then in your `CategoryPage.ss` template:
+
 ```html
 <% loop $ProductRows %>
-    <div class="row">
-        <% loop $Items %>
-            <div class="col-sm-{$Up.Width}<% if $First && $Up.Offset %> col-sm-offset-{$Up.Offset}<% end_if %>">
-                <h2>$Title</h2>
-                ...
-            </div>
-        <% end_loop %>
+<div class="row">
+    <% loop $Items %>
+    <div class="col-sm-{$Up.Width}<% if $First && $Up.Offset %> col-sm-offset-{$Up.Offset}<% end_if %>">
+        <h2>$Title</h2>
+        ...
     </div>
+    <% end_loop %>
+</div>
 <% end_loop %>
 ```
